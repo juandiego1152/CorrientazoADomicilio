@@ -1,36 +1,71 @@
 package com.corrientazo.Vistas;
 
 import com.corrientazo.Modelo.modConfiguracion;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class frmPrincipal extends javax.swing.JFrame {
 
-    private modConfiguracion modConfig;
     JButton boton;
 
-    public modConfiguracion getClassConfig() {
-        return modConfig;
-    }
-
-    public void setClassConfig(modConfiguracion classConfig) {
-        this.modConfig = classConfig;
-    }
-
+//    private modConfiguracion modConfig;
+//        
+//    public modConfiguracion getClassConfig() {
+//        return modConfig;
+//    }
+//
+//    public void setClassConfig(modConfiguracion classConfig) {
+//        this.modConfig = classConfig;
+//    }
     public frmPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        cargarBotones();
     }
 
+    private void cargarBotones() {
+        //posX  esta la posicion inicial de los botones en sentido vertical
+        int posX = 2;
+        for (int i = 1; i <= 40; i++) {
+            //Creamos un nuevo objeto boton
+            boton = new JButton();
+            //Le enviamos las caracteriscitas de ubicación y medida.
+            boton.setBounds(0, posX, 120, 30);        
+            boton.setText("DRON " + (i));            
+            //Le añadimos el nombre al boton
+            boton.setName("boton" + i);
+            //Creamos un contador x que es igual a numero que vayamos del ciclo.
+            final int x = i;
+            //Al boton le añadimos el action listener para cuando presiones el boton
+            boton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    //Cuando presionemos el boton se llama el metodo para que muestre el mapa de su caso.
+                    //llamarMapaDrones(x);
+                }
+            });
+            //añadimos el boton al menu
+            pnlMenu.add(boton);
+            //Sumamos la posicion posX para que el siguiente boton se cree mas abajo del ya creado.
+            posX = posX + 31;
+        }        
+        //Le enviamos pnl menu las nuevas dimensiones para que puedan caber todos los botones y se active el scroll panel.
+        pnlMenu.setPreferredSize(new Dimension(130, posX+5));
 
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         pnlContenedorMapa = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         pnlMenu = new javax.swing.JPanel();
         btnConfiguracion = new javax.swing.JButton();
 
@@ -45,32 +80,30 @@ public class frmPrincipal extends javax.swing.JFrame {
         pnlContenedorMapa.setLayout(pnlContenedorMapaLayout);
         pnlContenedorMapaLayout.setHorizontalGroup(
             pnlContenedorMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 983, Short.MAX_VALUE)
+            .addGap(0, 1114, Short.MAX_VALUE)
         );
         pnlContenedorMapaLayout.setVerticalGroup(
             pnlContenedorMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jScrollPane1.setAutoscrolls(true);
+        jScrollPane2.setAutoscrolls(true);
 
         pnlMenu.setBackground(new java.awt.Color(255, 255, 255));
-        pnlMenu.setAutoscrolls(true);
+        pnlMenu.setPreferredSize(new java.awt.Dimension(130, 500));
 
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 139, Short.MAX_VALUE)
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 618, Short.MAX_VALUE)
+            .addGap(0, 686, Short.MAX_VALUE)
         );
 
-        jScrollPane1.setViewportView(pnlMenu);
+        jScrollPane2.setViewportView(pnlMenu);
 
         btnConfiguracion.setText("CONFIGURACIÓN");
         btnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
@@ -79,39 +112,24 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConfiguracion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                    .addComponent(btnConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlContenedorMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlContenedorMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -167,8 +185,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfiguracion;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel pnlContenedorMapa;
     private javax.swing.JPanel pnlMenu;
     // End of variables declaration//GEN-END:variables
