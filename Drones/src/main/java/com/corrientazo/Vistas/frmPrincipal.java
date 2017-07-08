@@ -23,11 +23,13 @@ public class frmPrincipal extends javax.swing.JFrame {
         cargarBotones();
     }
 
-    private void cargarBotones() {
+    public void cargarBotones() {
 
         modConfiguracion modConfig = archivo.cargarDatos();
         //posX  esta la posicion inicial de los botones en sentido vertical
         int posX = 2;
+        LOGGER.info("Cantidad de drones cargar botones: " + modConfig.getCantidadDrones());
+        pnlMenu.removeAll();
         for (int i = 1; i <= modConfig.getCantidadDrones(); i++) {
             //Creamos un nuevo objeto boton
             boton = new JButton();
@@ -53,6 +55,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
         //Le enviamos pnl menu las nuevas dimensiones para que puedan caber todos los botones y se active el scroll panel.
         pnlMenu.setPreferredSize(new Dimension(130, posX + 5));
+        pnlMenu.revalidate();
+        pnlMenu.repaint();
     }
 
     @SuppressWarnings("unchecked")

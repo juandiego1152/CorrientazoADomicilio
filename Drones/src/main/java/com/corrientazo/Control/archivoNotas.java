@@ -2,8 +2,12 @@ package com.corrientazo.Control;
 
 import com.corrientazo.Modelo.modConfiguracion;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.Optional;
 import org.apache.log4j.Logger;
 
@@ -16,7 +20,7 @@ public class archivoNotas {
         String cantidadPlatos;                  
        
         archivoNotas archivo = new archivoNotas();
-        String linea = archivo.leerArchivoUnicaLinea("config.txt");
+        String linea = archivo.leerArchivoUnicaLinea("Config/config.txt");
         String[] config;        
         Optional<String> lineaOptional = Optional.ofNullable(linea);        
         if (lineaOptional.isPresent() && linea.contains(";") ) {
@@ -63,11 +67,31 @@ public class archivoNotas {
             }           
             b.close();
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            LOGGER.info("Error : " + ex.getMessage());
         }
         return " ";
     }
 
+    public static void editarFichero(String ruta, String dato) {
+        try {
+            File Ffichero = new File(ruta);
+            //Si no Existe el fichero lo crea
+            if (!Ffichero.exists()) {
+                Ffichero.createNewFile();
+            }
+            /*Abre un Flujo de escritura,sobre el fichero con codificacion utf-8. 
+             *Además  en el pedazo de sentencia "FileOutputStream(Ffichero,true)",
+             *true es por si existe el fichero seguir añadiendo texto y no borrar lo que tenia*/
+            BufferedWriter Fescribe = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Ffichero, false), "utf-8"));
+            /*Escribe en el fichero la cadena que recibe la función. 
+             *el string "\r\n" significa salto de linea*/
+            Fescribe.write(dato);
+            //Cierra el flujo de escritura
+            Fescribe.close();
+        } catch (Exception ex) {
+            LOGGER.info("Error : " + ex.getMessage());
+        }
+    }
     
 
 }
