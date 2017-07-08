@@ -1,43 +1,39 @@
 package com.corrientazo.Vistas;
 
+import com.corrientazo.Control.archivoNotas;
 import com.corrientazo.Modelo.modConfiguracion;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 
 public class frmPrincipal extends javax.swing.JFrame {
 
+    final static Logger LOGGER = Logger.getLogger(frmPrincipal.class);
     JButton boton;
+    archivoNotas archivo;
 
-//    private modConfiguracion modConfig;
-//        
-//    public modConfiguracion getClassConfig() {
-//        return modConfig;
-//    }
-//
-//    public void setClassConfig(modConfiguracion classConfig) {
-//        this.modConfig = classConfig;
-//    }
     public frmPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        archivo = new archivoNotas();
         cargarBotones();
     }
 
     private void cargarBotones() {
+
+        modConfiguracion modConfig = archivo.cargarDatos();
         //posX  esta la posicion inicial de los botones en sentido vertical
         int posX = 2;
-        for (int i = 1; i <= 40; i++) {
+        for (int i = 1; i <= modConfig.getCantidadDrones(); i++) {
             //Creamos un nuevo objeto boton
             boton = new JButton();
             //Le enviamos las caracteriscitas de ubicación y medida.
-            boton.setBounds(0, posX, 120, 30);        
-            boton.setText("DRON " + (i));            
+            boton.setBounds(0, posX, 120, 30);
+            boton.setText("DRON " + (i));
             //Le añadimos el nombre al boton
             boton.setName("boton" + i);
             //Creamos un contador x que es igual a numero que vayamos del ciclo.
@@ -54,10 +50,9 @@ public class frmPrincipal extends javax.swing.JFrame {
             pnlMenu.add(boton);
             //Sumamos la posicion posX para que el siguiente boton se cree mas abajo del ya creado.
             posX = posX + 31;
-        }        
+        }
         //Le enviamos pnl menu las nuevas dimensiones para que puedan caber todos los botones y se active el scroll panel.
-        pnlMenu.setPreferredSize(new Dimension(130, posX+5));
-
+        pnlMenu.setPreferredSize(new Dimension(130, posX + 5));
     }
 
     @SuppressWarnings("unchecked")
@@ -80,7 +75,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         pnlContenedorMapa.setLayout(pnlContenedorMapaLayout);
         pnlContenedorMapaLayout.setHorizontalGroup(
             pnlContenedorMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1114, Short.MAX_VALUE)
+            .addGap(0, 1039, Short.MAX_VALUE)
         );
         pnlContenedorMapaLayout.setVerticalGroup(
             pnlContenedorMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +91,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 139, Short.MAX_VALUE)
+            .addGap(0, 152, Short.MAX_VALUE)
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,10 +113,12 @@ public class frmPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                    .addComponent(btnConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlContenedorMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlContenedorMapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,6 +142,8 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConfiguracionActionPerformed
 
     public static void main(String args[]) {
+
+        BasicConfigurator.configure();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
