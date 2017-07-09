@@ -6,6 +6,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
 
 import javax.swing.JButton;
 import org.apache.log4j.BasicConfigurator;
@@ -17,14 +19,14 @@ public class frmPrincipal extends javax.swing.JFrame {
     JButton boton;
     archivoNotas archivo;
 
-    public frmPrincipal() {
+    public frmPrincipal() throws InterruptedException, ExecutionException {
         initComponents();
         this.setLocationRelativeTo(null);
         archivo = new archivoNotas();
         cargarBotones();
     }
 
-    public void cargarBotones() {
+    public void cargarBotones() throws InterruptedException, ExecutionException {
 
         modConfiguracion modConfig = archivo.cargarDatos();
         //posX  esta la posicion inicial de los botones en sentido vertical
@@ -73,7 +75,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         pnlContenedorMapa.revalidate();
         //Pintamos o llamamos el mapa
         pnlContenedorMapa.repaint();
-//        pnlContenedorMapa.setVisible(true);
+//      pnlContenedorMapa.setVisible(true);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -87,7 +89,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Su corrientazo a domicilio");
         setFocusCycleRoot(false);
-        setResizable(false);
 
         pnlContenedorMapa.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -133,18 +134,16 @@ public class frmPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlContenedorMapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addComponent(pnlContenedorMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlContenedorMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -197,7 +196,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmPrincipal().setVisible(true);
+                try {
+                    new frmPrincipal().setVisible(true);
+                } catch (InterruptedException | ExecutionException ex) {
+                    java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

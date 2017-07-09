@@ -1,0 +1,3 @@
+( -2,4 ) Dirección : Norte
+( -3,3 ) Dirección : Sur
+( -4,2 ) Dirección : Este

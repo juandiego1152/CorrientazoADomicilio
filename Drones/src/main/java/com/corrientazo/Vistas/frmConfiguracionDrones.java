@@ -2,15 +2,22 @@ package com.corrientazo.Vistas;
 
 import com.corrientazo.Control.archivoNotas;
 import com.corrientazo.Modelo.modConfiguracion;
-
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class frmConfiguracionDrones extends javax.swing.JPanel {
+
     modConfiguracion config;
-  
+
     public frmConfiguracionDrones() {
         initComponents();
         archivoNotas archivo = new archivoNotas();
-        config = archivo.cargarDatos();
+        try {
+            config = archivo.cargarDatos();
+        } catch (InterruptedException | ExecutionException ex) {
+            Logger.getLogger(frmConfiguracionDrones.class.getName()).log(Level.SEVERE, null, ex);
+        }
         txtcantidadDrones.setText(Integer.toString(config.getCantidadDrones()));
         txtcantidadAlmuerzos.setText(Integer.toString(config.getCantidadPlatos()));
     }
@@ -98,14 +105,20 @@ public class frmConfiguracionDrones extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       //Instanciamos el archivo notas para poder modificar el archivo
+        //Instanciamos el archivo notas para poder modificar el archivo
         archivoNotas archivoNotas = new archivoNotas();
         //Llamarmos el archivo y el metodo que va a escribir el fichero.
-        archivoNotas.editarFichero("Config/config.txt", txtcantidadDrones.getText() + ";" + txtcantidadAlmuerzos.getText());        
+        archivoNotas.editarFichero("Config/config.txt", txtcantidadDrones.getText() + ";" + txtcantidadAlmuerzos.getText());
         config.setCantidadDrones(Integer.parseInt(txtcantidadDrones.getText()));
         config.setCantidadPlatos(Integer.parseInt(txtcantidadAlmuerzos.getText()));
-        frmPrincipal frmPrincipal = new frmPrincipal();
-        frmPrincipal.cargarBotones();
+        frmPrincipal frmPrincipal;
+        try {
+            frmPrincipal = new frmPrincipal();
+            frmPrincipal.cargarBotones();
+        } catch (InterruptedException | ExecutionException ex) {
+            Logger.getLogger(frmConfiguracionDrones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
