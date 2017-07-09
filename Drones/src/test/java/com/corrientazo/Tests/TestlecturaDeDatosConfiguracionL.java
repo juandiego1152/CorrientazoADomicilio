@@ -22,7 +22,7 @@ public class TestlecturaDeDatosConfiguracionL {
         LOGGER.info("Cantidad drones " + modConfig.getCantidadDrones());
         LOGGER.info("Cantidad platos " + modConfig.getCantidadPlatos());
         assertEquals(20, modConfig.getCantidadDrones());
-        assertEquals(3, modConfig.getCantidadPlatos());
+        assertEquals(10, modConfig.getCantidadPlatos());
     }
    
 }

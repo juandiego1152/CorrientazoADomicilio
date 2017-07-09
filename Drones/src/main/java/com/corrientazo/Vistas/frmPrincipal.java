@@ -2,6 +2,7 @@ package com.corrientazo.Vistas;
 
 import com.corrientazo.Control.archivoNotas;
 import com.corrientazo.Modelo.modConfiguracion;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,7 +46,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     //Cuando presionemos el boton se llama el metodo para que muestre el mapa de su caso.
-                    //llamarMapaDrones(x);
+                    llamarFrmMovimientos(x);
                 }
             });
             //añadimos el boton al menu
@@ -59,6 +60,21 @@ public class frmPrincipal extends javax.swing.JFrame {
         pnlMenu.repaint();
     }
 
+    private void llamarFrmMovimientos(int dron) {
+        //Instanciamos la clase del mapa
+        frmMovimientosDron mapaPrincipal = new frmMovimientosDron(dron);
+        //Le enviamos el tamaño del jpanel donde lo vamos a meter.
+        mapaPrincipal.setSize(pnlContenedorMapa.getSize());
+        //Removemos todas las propiedades que hay dentor del Jcontenedor
+        pnlContenedorMapa.removeAll();
+        //Al contenedor le añadimos el mapa principal y le damos la posicion en centro.
+        pnlContenedorMapa.add(mapaPrincipal, BorderLayout.CENTER);
+        //Sirve para volver a cargar los atributos del pnl que vamos a llamar y que se puedan usar en el contenedor.
+        pnlContenedorMapa.revalidate();
+        //Pintamos o llamamos el mapa
+        pnlContenedorMapa.repaint();
+//        pnlContenedorMapa.setVisible(true);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
