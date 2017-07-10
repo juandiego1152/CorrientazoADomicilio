@@ -6,7 +6,5 @@ Es una aplicación capaz de operar drones para que haga entrega de almuerzos en 
 
 
 # Ambiente de desarrollo:
-NetBeans IDE 8.2
-JDK 8- 64 bits.
-Uso de Maven y repositorio GitHub.
+NetBeans IDE 8.2. JDK 8- 64 bit. Uso de Maven y repositorio GitHub.
 
