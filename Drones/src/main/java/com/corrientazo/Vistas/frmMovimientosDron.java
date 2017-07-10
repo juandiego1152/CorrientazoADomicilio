@@ -33,6 +33,9 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
 
     public frmMovimientosDron(int dron) {
         initComponents();
+        fondoPantallaPanel pnlFondo = new fondoPantallaPanel();
+        //Al pnl fondo le vamos a añadir la clase de fondo de pantalla.
+        jPanelDibujo.add(pnlFondo);
 
         jLabel22.setText(" INSPECCION DE RUTA DRON NUM " + dron);
         this.dron = dron;
@@ -101,7 +104,7 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         jPanelDibujo.setPreferredSize(new java.awt.Dimension(700, 700));
 
         lbDron.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lbDron.setText("DRON");
+        lbDron.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Dron.png"))); // NOI18N
         lbDron.setToolTipText("Click para posición");
 
         javax.swing.GroupLayout jPanelDibujoLayout = new javax.swing.GroupLayout(jPanelDibujo);
@@ -109,15 +112,15 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         jPanelDibujoLayout.setHorizontalGroup(
             jPanelDibujoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDibujoLayout.createSequentialGroup()
-                .addContainerGap(440, Short.MAX_VALUE)
+                .addContainerGap(376, Short.MAX_VALUE)
                 .addComponent(lbDron)
-                .addContainerGap(441, Short.MAX_VALUE))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
         jPanelDibujoLayout.setVerticalGroup(
             jPanelDibujoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDibujoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDibujoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbDron, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbDron)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -480,6 +483,7 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
 
             //Le añadimos al vector de posicion final las posiciones tomadas
             posicionFinal[i] = "(" + posY + ", " + posX + ") Dirección " + sentidoFinal;
+            lbDron.setToolTipText("(" + posY + ", " + posX + ") Dirección " + sentidoFinal);
 //            lbDron.setText("( " + posY + "," + posX + " )");
         }
         archivoNotas.editarFichero("Config/Ubicaciones/ubicacionDron" + dron + ".txt", "" + lineaRuta);
@@ -527,32 +531,6 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         }
         return listaUbiaciones;
     }
-
-    //    public void leerUbicacionDelDron(int dron) {
-//        Optional<String> filasOptional = Optional.ofNullable(archivo.leerArchivoUnicaLinea("Config/Ubicaciones/ubicacionDron" + dron + ".txt"));
-//
-//        if (filasOptional.isPresent()) {
-//            if (filasOptional.get().equals(" ")) {
-//                lineaRuta = 0;
-//            } else {
-//                lineaRuta = filasOptional.map(Integer::parseInt).get();
-//            }
-//        } else {
-//            lineaRuta = 0;
-//        }
-//    }
-//    private void leerLineas(int dron) {
-//        LOGGER.info("DRON: " + dron);
-//        String texto;
-//        //Hacemo la condicion para que texto lea el archivo quele pertenece
-//        if (dron < 10) {
-//            texto = archivo.leerArchivo("Entradas/in0" + dron + ".txt");
-//        } else {
-//            texto = archivo.leerArchivo("Entradas/in" + dron + ".txt");
-//        }
-//        //Enviamos al campo el texto
-//        txtComandos.setText(texto);
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarRecorrido;
