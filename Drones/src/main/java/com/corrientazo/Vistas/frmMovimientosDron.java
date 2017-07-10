@@ -93,6 +93,7 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         btnRutaAnterior = new javax.swing.JButton();
         btnSiguienteRuta = new javax.swing.JButton();
         btnLimpiarRecorrido = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -115,7 +116,7 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         jPanelDibujoLayout.setVerticalGroup(
             jPanelDibujoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDibujoLayout.createSequentialGroup()
-                .addGap(307, 307, 307)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbDron, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -134,6 +135,7 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         jLabel3.setText("Posiciones:");
 
         txtPosiciones.setColumns(20);
+        txtPosiciones.setLineWrap(true);
         txtPosiciones.setRows(5);
         txtPosiciones.setEnabled(false);
         jScrollPane2.setViewportView(txtPosiciones);
@@ -147,12 +149,13 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         });
 
         txtComandos.setColumns(20);
+        txtComandos.setLineWrap(true);
         txtComandos.setRows(5);
         txtComandos.setEnabled(false);
         jScrollPane1.setViewportView(txtComandos);
 
         btnRutaAnterior.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnRutaAnterior.setText("Ruta Anterior");
+        btnRutaAnterior.setText("Anterior Domicilio");
         btnRutaAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRutaAnteriorActionPerformed(evt);
@@ -160,7 +163,7 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         });
 
         btnSiguienteRuta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSiguienteRuta.setText("Siguiente Ruta");
+        btnSiguienteRuta.setText("Siguiente Domicilio");
         btnSiguienteRuta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSiguienteRutaActionPerformed(evt);
@@ -179,8 +182,8 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnIniciarRecorrido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnLimpiarRecorrido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel3)
@@ -194,8 +197,8 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
                 .addGap(5, 5, 5)
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addComponent(btnSiguienteRuta)
                 .addGap(5, 5, 5)
                 .addComponent(btnRutaAnterior)
@@ -206,29 +209,40 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
                 .addGap(9, 9, 9)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setText("NOTA: Puede ver la posición final del Dron presionando \"Iniciar Recorrido\" o ver cada fase de la rusa con \"Siguiente Domicilio\" o \"Anterior Domicilio\" ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jPanelDibujo, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanelDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 953, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel22)
                 .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE))
+                    .addComponent(jPanelDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))
+                .addGap(5, 5, 5)
+                .addComponent(jLabel4)
                 .addGap(10, 10, 10))
         );
 
@@ -238,7 +252,7 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
@@ -548,6 +562,7 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelDibujo;

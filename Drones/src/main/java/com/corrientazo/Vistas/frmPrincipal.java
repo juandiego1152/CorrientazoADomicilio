@@ -81,27 +81,23 @@ public class frmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlContenedorMapa = new javax.swing.JPanel();
+        pnlBackGround = new javax.swing.JPanel();
+        btnConfiguracion = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         pnlMenu = new javax.swing.JPanel();
-        btnConfiguracion = new javax.swing.JButton();
+        pnlContenedorMapa = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Su corrientazo a domicilio");
         setFocusCycleRoot(false);
+        setResizable(false);
 
-        pnlContenedorMapa.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pnlContenedorMapaLayout = new javax.swing.GroupLayout(pnlContenedorMapa);
-        pnlContenedorMapa.setLayout(pnlContenedorMapaLayout);
-        pnlContenedorMapaLayout.setHorizontalGroup(
-            pnlContenedorMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1039, Short.MAX_VALUE)
-        );
-        pnlContenedorMapaLayout.setVerticalGroup(
-            pnlContenedorMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        btnConfiguracion.setText("CONFIGURACIÓN");
+        btnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfiguracionActionPerformed(evt);
+            }
+        });
 
         jScrollPane2.setAutoscrolls(true);
 
@@ -121,31 +117,54 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(pnlMenu);
 
-        btnConfiguracion.setText("CONFIGURACIÓN");
-        btnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfiguracionActionPerformed(evt);
-            }
-        });
+        pnlContenedorMapa.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnlContenedorMapaLayout = new javax.swing.GroupLayout(pnlContenedorMapa);
+        pnlContenedorMapa.setLayout(pnlContenedorMapaLayout);
+        pnlContenedorMapaLayout.setHorizontalGroup(
+            pnlContenedorMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1019, Short.MAX_VALUE)
+        );
+        pnlContenedorMapaLayout.setVerticalGroup(
+            pnlContenedorMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pnlBackGroundLayout = new javax.swing.GroupLayout(pnlBackGround);
+        pnlBackGround.setLayout(pnlBackGroundLayout);
+        pnlBackGroundLayout.setHorizontalGroup(
+            pnlBackGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBackGroundLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(pnlBackGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addComponent(pnlContenedorMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+        pnlBackGroundLayout.setVerticalGroup(
+            pnlBackGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBackGroundLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(pnlBackGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlContenedorMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlBackGroundLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                        .addGap(0, 0, 0)
+                        .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addComponent(pnlContenedorMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pnlBackGround, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlContenedorMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(pnlBackGround, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -208,6 +227,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfiguracion;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel pnlBackGround;
     private javax.swing.JPanel pnlContenedorMapa;
     private javax.swing.JPanel pnlMenu;
     // End of variables declaration//GEN-END:variables
