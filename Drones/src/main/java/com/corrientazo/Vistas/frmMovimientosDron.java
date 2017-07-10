@@ -267,11 +267,15 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
      *
      */
     @Override
-    public void moverDron() {
-        LOGGER.info("Moviendo el dron");  
+    public void moverDron() {      
+        LOGGER.info("Moviendo el dron");
+        archivoNotas archivoNotas = new archivoNotas();
+        //Creamos un vector para las posiciones finales de cada ruta;
+        String[] posicionFinal;
         //Creamos un vector linea y le enviamos cada una de las rutas separadas por punto y coma.
-        String[] linea = txtComandos.getText().split(";");
-   
+        String[] linea = txtComandos.getText().split(";");        
+        //Iniciamos los contador posX y posY los cuales nos van a llevar el calculo de las posiciones del dron
+        int posX = 0, posY = 0;
         //Iniciamos los contadores para las posiciones del label.
         int locationLabelX = 250, locationLabelY = 250;
         //Iniciamos el sentido del dron que sera norta
@@ -280,16 +284,70 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         //Iniciamos una variable para guardar cual es la ultima direccion del dron que lo vamos a necesitar en la posicion final.
         String ultimaDireccionX = "";
         //Si la linea es 0 o -1 significa que esta vacio y retorna y inicia las variables nuevamente,
-      
+        if (lineaRuta == 0 || lineaRuta == -1) {
+            txtPosiciones.setText("");
+            lineaRuta = 0;
+            //Llamarmos el archivo y el metodo que va a escribir el fichero.
+            archivoNotas.editarFichero("Config/Ubicaciones/ubicacionDron" + dron + ".txt", "" + lineaRuta);
+            sacarUbicaciones(new String[0]);
+            locationLabelX = 250;
+            locationLabelY = 200;
+            lbDron.setLocation(locationLabelY, locationLabelX);
+            return;
+            //Si la linea de la ruta es -2 significa que va a leer todas las rutas y no linea por linea
+        } else if (lineaRuta == -2) {
+            //Le agregamos al vector posicion final la cantidad de filas que puede tener en este caso las de la linea de rutas leidas;
+            posicionFinal = new String[linea.length];
+            lineaRuta = linea.length;
+        } else if (lineaRuta > linea.length) {
+            //Si la linea de la ruta es mayor a la cantidad de lineas leidas la asigna para que sean iguales.
+            lineaRuta = linea.length;
+            archivoNotas.editarFichero("Config/Ubicaciones/ubicacionDron" + dron + ".txt", "" + lineaRuta);
+            return;
+        } else {
+            //Le agregamos al vector posicion final la cantidad de filas que puede tener en este caso las de la linea de rutas leidas;
+            posicionFinal = new String[lineaRuta];
+        }
 
-        for (int i = 0; i < lineaRuta; i++) {            
+        for (int i = 0; i < lineaRuta; i++) {
+            //realizamos modulo sobre la posicion en que estamos para verificar si esta en la cantidad que puede llevar cada dron de platos.
+            if (i % config.getCantidadPlatos() == 0) {
+//                System.out.println("SE DEVOLVIO A LA POSICION 0");
+                //Si entra aca, significa que es modulo de la cantidad configurada y el dron vuelve a iniciar en cero.
+                posX = 0;
+                locationLabelX = 250;
+                posY = 0;
+                locationLabelY = 200;
+                sentido = "N";
+                ultimaDireccionX = "";
+            }
+            //A la ruta le asignamos la linea de la ruta que estamos ejecutando.
             String ruta = linea[i];
             //Iniciamos una variable para saber cual es la posicion de la ultima letra;
             int letraFinal = ruta.length();
             //Iniicamos un for que recorra cada una de las letras de la ruta
             for (int x = 0; x < ruta.length(); x++) {
                 //Realizamos un substring para tomar la letra que se va a ejecutar
-                String letras = ruta.substring(x, x + 1);           
+                String letras = ruta.substring(x, x + 1);
+                //Verificamos cual es la letra que se esta ejecutando
+                if (letras.equals("A") || letras.equals("a")) {
+//                    System.out.println("ADELANTE");
+                    if (sentido.equals("N")) {
+                        ultimaDireccionX = "N";
+                        posX++;
+                        locationLabelX = locationLabelX - 20;
+                    } else if (sentido.equals("S")) {
+                        ultimaDireccionX = "S";
+                        posX--;
+                        locationLabelX = locationLabelX + 20;
+                    } else if (sentido.equals("O")) {
+                        posY--;
+                        locationLabelY = locationLabelY - 20;
+                    } else if (sentido.equals("E")) {
+                        posY++;
+                        locationLabelY = locationLabelY + 20;
+                    }
+                }
 
                 //Verificamos la posicion de la letra final si es igual a la posicion en que estamos para validar cual seria el sentido final del dron.
                 //La diferencia entre el sentido es que si viene desde norte, la posicion iria hacia abajo y viceversa
@@ -315,14 +373,9 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
                         } else if (sentido.equals("E")) {
                             sentido = "N";
                         }
-//                        System.out.println("GIRO IZQUIERDA " + sentido);
                     }
-//                    System.out.println("POSICION " + i + " :" + posX + "," + posY + ", Sentido : " + sentido);
-                } else {
-//                    System.out.println("DENTRO AL ELSE");
-//                    System.out.println("letra Final " + ultimaDireccionX);
+                } else {                 
                     if (ultimaDireccionX.equals("S")) {
-//                        System.out.println("DENTRO AL SUR");
                         if (letras.equals("D") || letras.equals("d")) {
                             if (sentido.equals("N")) {
                                 sentido = "E";
@@ -333,7 +386,6 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
                             } else if (sentido.equals("E")) {
                                 sentido = "N";
                             }
-//                            System.out.println("giro Derecha " + sentido);
                         } else if (letras.equals("I") || letras.equals("i")) {
                             if (sentido.equals("N")) {
                                 sentido = "O";
@@ -344,10 +396,8 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
                             } else if (sentido.equals("E")) {
                                 sentido = "S";
                             }
-//                            System.out.println("giro Izquierda " + sentido);
                         }
                     } else {
-//                        System.out.println("DENTRO AL NORTE");
                         if (letras.equals("D") || letras.equals("d")) {
                             if (sentido.equals("N")) {
                                 sentido = "E";
@@ -358,7 +408,6 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
                             } else if (sentido.equals("E")) {
                                 sentido = "S";
                             }
-//                            System.out.println("GIRO DERECHA " + sentido);
                         } else if (letras.equals("I") || letras.equals("i")) {
                             if (sentido.equals("N")) {
                                 sentido = "O";
@@ -369,11 +418,9 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
                             } else if (sentido.equals("E")) {
                                 sentido = "N";
                             }
-//                            System.out.println("GIRO IZQUIERDA " + sentido);
                         }
                     }
                 }
-
             }
 
 //          lbDron.repaint();
@@ -384,11 +431,17 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
             //Le asingamos el nombre a cada letra de los sentidos.
             String sentidoFinal = sentidoEnLetras().apply(sentido);
 
-      
+            //Le añadimos al vector de posicion final las posiciones tomadas
+            posicionFinal[i] = "( " + posY + "," + posX + " ) Dirección : " + sentidoFinal;
+//            lbDron.setText("( " + posY + "," + posX + " )");
         }
-  
+        archivoNotas.editarFichero("Config/Ubicaciones/ubicacionDron" + dron + ".txt", "" + lineaRuta);
+        //Llamamos el metodo para sacar las ubicaciones
+        sacarUbicaciones(posicionFinal);
+        
+        
     }
-
+    
     public Function<String, String> sentidoEnLetras() {
         return (String x) -> {
             switch (x) {
@@ -424,13 +477,38 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         archivoNotas archivoNotas = new archivoNotas();
 
         if (dron < 10 && dron != 0) {
-            archivoNotas.editarFichero("out0" + dron + ".txt", listaUbiaciones);
+            archivoNotas.editarFichero("Salidas/out0" + dron + ".txt", listaUbiaciones);
         } else {
-            archivoNotas.editarFichero("out" + dron + ".txt", listaUbiaciones);
+            archivoNotas.editarFichero("Salidas/out" + dron + ".txt", listaUbiaciones);
         }
 
     }
 
+    //    public void leerUbicacionDelDron(int dron) {
+//        Optional<String> filasOptional = Optional.ofNullable(archivo.leerArchivoUnicaLinea("Config/Ubicaciones/ubicacionDron" + dron + ".txt"));
+//
+//        if (filasOptional.isPresent()) {
+//            if (filasOptional.get().equals(" ")) {
+//                lineaRuta = 0;
+//            } else {
+//                lineaRuta = filasOptional.map(Integer::parseInt).get();
+//            }
+//        } else {
+//            lineaRuta = 0;
+//        }
+//    }
+//    private void leerLineas(int dron) {
+//        LOGGER.info("DRON: " + dron);
+//        String texto;
+//        //Hacemo la condicion para que texto lea el archivo quele pertenece
+//        if (dron < 10) {
+//            texto = archivo.leerArchivo("Entradas/in0" + dron + ".txt");
+//        } else {
+//            texto = archivo.leerArchivo("Entradas/in" + dron + ".txt");
+//        }
+//        //Enviamos al campo el texto
+//        txtComandos.setText(texto);
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarRecorrido;
@@ -451,3 +529,15 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
     // End of variables declaration//GEN-END:variables
 
 }
+
+//Instanciamos el panel del fondo de pantala
+//fondoPantallaPanel pnlFondo = new fondoPantallaPanel();
+//Al pnl fondo le vamos a añadir la clase de fondo de pantalla.
+//jPanelDibujo.add(pnlFondo);
+//A la clase config inicialidada publica le añadimos los datos del metodo ubicado en la clase archivo..
+//        config = archivo.cargarDatos();        
+//Llenamos las lineas que hay en el archivo de cada dron
+//leerLineas(dron);
+//        for (int i = 0; i < filasCargadas.length; i++) {
+//iniciarRecorrido();
+//        }

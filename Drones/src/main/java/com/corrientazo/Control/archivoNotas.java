@@ -203,7 +203,9 @@ public class archivoNotas implements configuracionDronesPlatos {
                 cadena = b.readLine();
             }
             b.close();
-            lista.stream().map(String::toUpperCase);
+            lista.stream().map(String::toUpperCase); 
+            
+            lista.stream().map(x -> x.endsWith(";"));
             return volverCadena(lista);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se encontro el archivo txt de este dron");
@@ -217,7 +219,7 @@ public class archivoNotas implements configuracionDronesPlatos {
         for (String string : lista) {
             cadenaFinal = cadenaFinal + string + ";\n";
         }
-        return cadenaFinal;
+        return cadenaFinal.substring(0, cadenaFinal.length() -1);
     }
 }
 
