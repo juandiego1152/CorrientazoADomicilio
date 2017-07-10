@@ -19,9 +19,9 @@ import static org.junit.Assert.*;
  *
  * @author Juan Diego Pro
  */
-public class TestLeyendoUbicaciones {
+public class TestDeSalidas {
     
-    public TestLeyendoUbicaciones() {
+    public TestDeSalidas() {
     }
   
     

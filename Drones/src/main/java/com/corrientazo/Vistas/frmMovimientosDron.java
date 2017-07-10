@@ -28,11 +28,12 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
     public void setLineaRuta(int lineaRuta) {
         this.lineaRuta = lineaRuta;
     }
-    
+
     int dron = 0;
 
     public frmMovimientosDron(int dron) {
         initComponents();
+
         jLabel22.setText(" INSPECCION DE RUTA DRON NUM " + dron);
         this.dron = dron;
         config = new modConfiguracion();
@@ -99,22 +100,23 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         jPanelDibujo.setPreferredSize(new java.awt.Dimension(700, 700));
 
         lbDron.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lbDron.setText("DRON");
         lbDron.setToolTipText("Click para posición");
 
         javax.swing.GroupLayout jPanelDibujoLayout = new javax.swing.GroupLayout(jPanelDibujo);
         jPanelDibujo.setLayout(jPanelDibujoLayout);
         jPanelDibujoLayout.setHorizontalGroup(
             jPanelDibujoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDibujoLayout.createSequentialGroup()
-                .addContainerGap(311, Short.MAX_VALUE)
-                .addComponent(lbDron, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(302, 302, 302))
+            .addGroup(jPanelDibujoLayout.createSequentialGroup()
+                .addContainerGap(440, Short.MAX_VALUE)
+                .addComponent(lbDron)
+                .addContainerGap(441, Short.MAX_VALUE))
         );
         jPanelDibujoLayout.setVerticalGroup(
             jPanelDibujoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDibujoLayout.createSequentialGroup()
-                .addGap(298, 298, 298)
-                .addComponent(lbDron, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(307, 307, 307)
+                .addComponent(lbDron, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -214,9 +216,9 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(jPanelDibujo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(10, 10, 10)
+                .addComponent(jPanelDibujo, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -227,7 +229,7 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE))
-                .addGap(5, 5, 5))
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -236,7 +238,7 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
@@ -318,7 +320,7 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
             posicionFinal = new String[linea.length];
             lineaRuta = linea.length;
         } else if (lineaRuta > linea.length) {
-             LOGGER.debug("Linea ruta > Lineas de codigo");
+            LOGGER.debug("Linea ruta > Lineas de codigo");
             //Si la linea de la ruta es mayor a la cantidad de lineas leidas la asigna para que sean iguales.
             lineaRuta = linea.length;
             archivoNotas.editarFichero("Config/Ubicaciones/ubicacionDron" + dron + ".txt", "" + lineaRuta);
@@ -378,10 +380,10 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
                 //Verificamos la posicion de la letra final si es igual a la posicion en que estamos para validar cual seria el sentido final del dron.
                 //La diferencia entre el sentido es que si viene desde norte, la posicion iria hacia abajo y viceversa
                 if (letraFinal - 1 != x) {
-                    System.out.println("Entro a letra final "+ letraFinal );
+                    System.out.println("Entro a letra final " + letraFinal);
                     System.out.println("letras " + letras);
                     System.out.println("sentido " + sentido);
-                    
+
                     if (letras.equals("D") || letras.equals("d")) {
                         if (sentido.equals("N")) {
                             sentido = "E";
