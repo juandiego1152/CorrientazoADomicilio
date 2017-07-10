@@ -207,7 +207,7 @@ public class archivoNotas implements configuracionDronesPlatos {
             return volverCadena(lista);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se encontro el archivo txt de este dron");
-            LOGGER.error("Error : " + ex.getMessage());
+            LOGGER.error("Error al leer el archivo : " + ex.getMessage());
             return "";
         }
     }
@@ -215,9 +215,9 @@ public class archivoNotas implements configuracionDronesPlatos {
     String volverCadena(List<String> lista){
         String cadenaFinal = "";
         for (String string : lista) {
-            cadenaFinal = cadenaFinal + string + "\n";
+            cadenaFinal = cadenaFinal + string + ";\n";
         }
-        return "";
+        return cadenaFinal;
     }
 }
 

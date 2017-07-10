@@ -1,1 +1,1 @@
-( -2,4 ) Dirección : Norte
+( 0,0 ) Dirección : Norte
