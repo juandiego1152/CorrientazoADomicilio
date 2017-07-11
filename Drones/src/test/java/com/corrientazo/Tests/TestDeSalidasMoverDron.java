@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.corrientazo.Tests;
 
 import com.corrientazo.Vistas.frmMovimientosDron;
@@ -21,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author Juan Diego Pro
  */
-public class TestDeSalidas {
+public class TestDeSalidasMoverDron {
 
-    public TestDeSalidas() {
+    public TestDeSalidasMoverDron() {
     }
 
     @Test

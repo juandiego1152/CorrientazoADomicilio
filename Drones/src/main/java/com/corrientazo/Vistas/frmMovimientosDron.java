@@ -37,6 +37,8 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         //Al pnl fondo le vamos a añadir la clase de fondo de pantalla.
         jPanelDibujo.add(pnlFondo);
 
+        lbDron.setLocation(280, 280);
+
         jLabel22.setText(" INSPECCION DE RUTA DRON NUM " + dron);
         this.dron = dron;
         config = new modConfiguracion();
@@ -96,7 +98,8 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         btnRutaAnterior = new javax.swing.JButton();
         btnSiguienteRuta = new javax.swing.JButton();
         btnLimpiarRecorrido = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -104,6 +107,7 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         jPanelDibujo.setPreferredSize(new java.awt.Dimension(700, 700));
 
         lbDron.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lbDron.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbDron.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Dron.png"))); // NOI18N
         lbDron.setToolTipText("Click para posición");
 
@@ -112,13 +116,13 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         jPanelDibujoLayout.setHorizontalGroup(
             jPanelDibujoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDibujoLayout.createSequentialGroup()
-                .addContainerGap(376, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbDron)
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelDibujoLayout.setVerticalGroup(
             jPanelDibujoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDibujoLayout.createSequentialGroup()
+            .addGroup(jPanelDibujoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbDron)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -181,59 +185,61 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
             }
         });
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(3);
+        jTextArea1.setText("NOTA: Puede ver la posición final \ndel Dron presionando \"Iniciar \nRecorrido\" o ver cada fase de la \nruta con \"Siguiente Domicilio\" o \n\"Anterior Domicilio\" ");
+        jScrollPane3.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnIniciarRecorrido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnLimpiarRecorrido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel3)
-            .addComponent(jLabel1)
             .addComponent(btnSiguienteRuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnRutaAnterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addComponent(jScrollPane3)
+                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane2)
+                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
                 .addComponent(btnSiguienteRuta)
                 .addGap(5, 5, 5)
                 .addComponent(btnRutaAnterior)
                 .addGap(5, 5, 5)
                 .addComponent(btnIniciarRecorrido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(5, 5, 5)
                 .addComponent(btnLimpiarRecorrido)
-                .addGap(9, 9, 9)
+                .addGap(5, 5, 5)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
+                .addGap(3, 3, 3)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2))
         );
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setText("NOTA: Puede ver la posición final del Dron presionando \"Iniciar Recorrido\" o ver cada fase de la rusa con \"Siguiente Domicilio\" o \"Anterior Domicilio\" ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 1188, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanelDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 953, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jPanelDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -242,11 +248,9 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
                 .addComponent(jLabel22)
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))
-                .addGap(5, 5, 5)
-                .addComponent(jLabel4)
-                .addGap(10, 10, 10))
+                    .addComponent(jPanelDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -314,7 +318,7 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         //Iniciamos los contador posX y posY los cuales nos van a llevar el calculo de las posiciones del dron
         int posX = 0, posY = 0;
         //Iniciamos los contadores para las posiciones del label.
-        int locationLabelX = 250, locationLabelY = 250;
+        int locationLabelX = 500, locationLabelY = 500;
         //Iniciamos el sentido del dron que sera norta
         String sentido = "N";
         //N = norte, S = Sur, O= Oeste, E=Este;    
@@ -328,8 +332,8 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
             //Llamarmos el archivo y el metodo que va a escribir el fichero.
             archivoNotas.editarFichero("Config/Ubicaciones/ubicacionDron" + dron + ".txt", "" + lineaRuta);
             sacarUbicaciones(new ArrayList());
-            locationLabelX = 250;
-            locationLabelY = 200;
+            locationLabelX = 280;
+            locationLabelY = 280;
             lbDron.setLocation(locationLabelY, locationLabelX);
             return posicionFinal;
             //Si la linea de la ruta es -2 significa que va a leer todas las rutas y no linea por linea
@@ -399,80 +403,118 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
                 //La diferencia entre el sentido es que si viene desde norte, la posicion iria hacia abajo y viceversa
                 if (letraFinal - 1 != x) {
                     if (letras.equals("D") || letras.equals("d")) {
-                        if (sentido.equals("N")) {
-                            sentido = "E";
-                        } else if (sentido.equals("S")) {
-                            sentido = "O";
-                        } else if (sentido.equals("O")) {
-                            sentido = "N";
-                        } else if (sentido.equals("E")) {
-                            sentido = "S";
+                        switch (sentido) {
+                            case "N":
+                                sentido = "E";
+                                break;
+                            case "S":
+                                sentido = "O";
+                                break;
+                            case "O":
+                                sentido = "N";
+                                break;
+                            case "E":
+                                sentido = "S";
+                                break;
+                            default:
+                                break;
                         }
                     } else if (letras.equals("I") || letras.equals("i")) {
-                        if (sentido.equals("N")) {
-                            sentido = "O";
-                        } else if (sentido.equals("S")) {
-                            sentido = "O";
-                        } else if (sentido.equals("O")) {
-                            sentido = "S";
-                        } else if (sentido.equals("E")) {
-                            sentido = "N";
+                        switch (sentido) {
+                            case "N":
+                                sentido = "O";
+                                break;
+                            case "S":
+                                sentido = "O";
+                                break;
+                            case "O":
+                                sentido = "S";
+                                break;
+                            case "E":
+                                sentido = "N";
+                                break;
+                            default:
+                                break;
                         }
                     }
                 } else {
                     if (ultimaDireccionX.equals("S")) {
                         if (letras.equals("D") || letras.equals("d")) {
-                            if (sentido.equals("N")) {
-                                sentido = "E";
-                            } else if (sentido.equals("S")) {
-                                sentido = "E";
-                            } else if (sentido.equals("O")) {
-                                sentido = "S";
-                            } else if (sentido.equals("E")) {
-                                sentido = "N";
+                            switch (sentido) {
+                                case "N":
+                                    sentido = "E";
+                                    break;
+                                case "S":
+                                    sentido = "E";
+                                    break;
+                                case "O":
+                                    sentido = "S";
+                                    break;
+                                case "E":
+                                    sentido = "N";
+                                    break;
+                                default:
+                                    break;
                             }
                         } else if (letras.equals("I") || letras.equals("i")) {
-                            if (sentido.equals("N")) {
-                                sentido = "O";
-                            } else if (sentido.equals("S")) {
-                                sentido = "O";
-                            } else if (sentido.equals("O")) {
-                                sentido = "N";
-                            } else if (sentido.equals("E")) {
-                                sentido = "S";
+                            switch (sentido) {
+                                case "N":
+                                    sentido = "O";
+                                    break;
+                                case "S":
+                                    sentido = "O";
+                                    break;
+                                case "O":
+                                    sentido = "N";
+                                    break;
+                                case "E":
+                                    sentido = "S";
+                                    break;
+                                default:
+                                    break;
                             }
                         }
                     } else {
                         if (letras.equals("D") || letras.equals("d")) {
-                            if (sentido.equals("N")) {
-                                sentido = "O";
-                            } else if (sentido.equals("S")) {
-                                sentido = "O";
-                            } else if (sentido.equals("O")) {
-                                sentido = "N";
-                            } else if (sentido.equals("E")) {
-                                sentido = "S";
+                            switch (sentido) {
+                                case "N":
+                                    sentido = "O";
+                                    break;
+                                case "S":
+                                    sentido = "O";
+                                    break;
+                                case "O":
+                                    sentido = "N";
+                                    break;
+                                case "E":
+                                    sentido = "S";
+                                    break;
+                                default:
+                                    break;
                             }
                         } else if (letras.equals("I") || letras.equals("i")) {
-                            if (sentido.equals("N")) {
-                                sentido = "O";
-                            } else if (sentido.equals("S")) {
-                                sentido = "O";
-                            } else if (sentido.equals("O")) {
-                                sentido = "S";
-                            } else if (sentido.equals("E")) {
-                                sentido = "N";
+                            switch (sentido) {
+                                case "N":
+                                    sentido = "O";
+                                    break;
+                                case "S":
+                                    sentido = "O";
+                                    break;
+                                case "O":
+                                    sentido = "S";
+                                    break;
+                                case "E":
+                                    sentido = "N";
+                                    break;
+                                default:
+                                    break;
                             }
                         }
                     }
                 }
-            }
-
-//          lbDron.repaint();
-//          lbDron.setBounds(locationLabelY, locationLabelX, lbDron.getWidth(), lbDron.getHeight());
+            }      
             //Le enviamos al dron la nueva ubicacion 
             lbDron.setLocation(locationLabelY, locationLabelX);
-
             //Le asingamos el nombre a cada letra de los sentidos.
             String sentidoFinal = sentidoEnLetras().apply(sentido);
 
@@ -506,8 +548,8 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
 
     public List<String> sacarUbicaciones(List<String> listaUbiaciones) {
         txtPosiciones.setText("");
-        listaUbiaciones.stream().forEach(s -> txtPosiciones.setText(txtPosiciones.getText() + s + "\n"));        
-        
+        listaUbiaciones.stream().forEach(s -> txtPosiciones.setText(txtPosiciones.getText() + s + "\n"));
+
         if (dron < 10 && dron != 0) {
             archivoNotas.editarFichero("Salidas/out0" + dron + ".txt", listaUbiaciones.stream().toString());
         } else {
@@ -524,12 +566,13 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelDibujo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lbDron;
     private javax.swing.JTextArea txtComandos;
     private javax.swing.JTextArea txtPosiciones;

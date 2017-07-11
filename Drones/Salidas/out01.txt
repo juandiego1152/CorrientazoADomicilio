@@ -1,1 +1,1 @@
-java.util.stream.ReferencePipeline$Head@62ddc08f
+java.util.stream.ReferencePipeline$Head@1472ced2
