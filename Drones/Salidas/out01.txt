@@ -1,2 +1,1 @@
-(-2, 4) Dirección Norte
-(-3, 3) Dirección Sur
+java.util.stream.ReferencePipeline$Head@1a4725af

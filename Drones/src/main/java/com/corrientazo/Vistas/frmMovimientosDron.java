@@ -307,9 +307,10 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         iniciarRecorrido(linea);
     }
 
-    public String[] iniciarRecorrido(String[] linea) {
+    public List<String> iniciarRecorrido(String[] linea) {
         //Creamos un vector para las posiciones finales de cada ruta;
-        String[] posicionFinal;
+        //String[] posicionFinal;
+        List<String> posicionFinal = new ArrayList<>();
         //Iniciamos los contador posX y posY los cuales nos van a llevar el calculo de las posiciones del dron
         int posX = 0, posY = 0;
         //Iniciamos los contadores para las posiciones del label.
@@ -326,25 +327,25 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
             lineaRuta = 0;
             //Llamarmos el archivo y el metodo que va a escribir el fichero.
             archivoNotas.editarFichero("Config/Ubicaciones/ubicacionDron" + dron + ".txt", "" + lineaRuta);
-            sacarUbicaciones(new String[0]);
+            sacarUbicaciones(new ArrayList());
             locationLabelX = 250;
             locationLabelY = 200;
             lbDron.setLocation(locationLabelY, locationLabelX);
-            return linea;
+            return posicionFinal;
             //Si la linea de la ruta es -2 significa que va a leer todas las rutas y no linea por linea
         } else if (lineaRuta == -2) {
             //Le agregamos al vector posicion final la cantidad de filas que puede tener en este caso las de la linea de rutas leidas;
-            posicionFinal = new String[linea.length];
+            //posicionFinal = new String[linea.length];
             lineaRuta = linea.length;
         } else if (lineaRuta > linea.length) {
             LOGGER.debug("Linea ruta > Lineas de codigo");
             //Si la linea de la ruta es mayor a la cantidad de lineas leidas la asigna para que sean iguales.
             lineaRuta = linea.length;
             archivoNotas.editarFichero("Config/Ubicaciones/ubicacionDron" + dron + ".txt", "" + lineaRuta);
-            return linea;
+            return posicionFinal;
         } else {
             //Le agregamos al vector posicion final la cantidad de filas que puede tener en este caso las de la linea de rutas leidas;
-            posicionFinal = new String[lineaRuta];
+            //posicionFinal = new String[lineaRuta];
         }
 
         for (int i = 0; i < lineaRuta; i++) {
@@ -397,10 +398,6 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
                 //Verificamos la posicion de la letra final si es igual a la posicion en que estamos para validar cual seria el sentido final del dron.
                 //La diferencia entre el sentido es que si viene desde norte, la posicion iria hacia abajo y viceversa
                 if (letraFinal - 1 != x) {
-                    System.out.println("Entro a letra final " + letraFinal);
-                    System.out.println("letras " + letras);
-                    System.out.println("sentido " + sentido);
-
                     if (letras.equals("D") || letras.equals("d")) {
                         if (sentido.equals("N")) {
                             sentido = "E";
@@ -423,7 +420,6 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
                         }
                     }
                 } else {
-                    System.out.println("ultima direccion " + ultimaDireccionX);
                     if (ultimaDireccionX.equals("S")) {
                         if (letras.equals("D") || letras.equals("d")) {
                             if (sentido.equals("N")) {
@@ -447,7 +443,6 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
                             }
                         }
                     } else {
-                        System.out.println("else ultima direccion");
                         if (letras.equals("D") || letras.equals("d")) {
                             if (sentido.equals("N")) {
                                 sentido = "O";
@@ -482,7 +477,8 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
             String sentidoFinal = sentidoEnLetras().apply(sentido);
 
             //Le añadimos al vector de posicion final las posiciones tomadas
-            posicionFinal[i] = "(" + posY + ", " + posX + ") Dirección " + sentidoFinal;
+            //posicionFinal[i] = "(" + posY + ", " + posX + ") Dirección " + sentidoFinal;
+            posicionFinal.add("(" + posY + ", " + posX + ") Dirección " + sentidoFinal);
             lbDron.setToolTipText("(" + posY + ", " + posX + ") Dirección " + sentidoFinal);
 //            lbDron.setText("( " + posY + "," + posX + " )");
         }
@@ -508,26 +504,14 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         };
     }
 
-    private String[] sacarUbicaciones(String[] listaUbiaciones) {
-        //private void sacarUbicaciones(ArrayList listaUbiaciones) {
-        //listaUbiaciones.stream().forEach(s -> txtPosiciones.setText(txtPosiciones.getText() + s + "\n"));
-
-        //Le añadimos al txt que imprime las ubicaciones cada unad e estas.
-        System.out.println("cant " + listaUbiaciones.length);
-        for (int i = 0; i < listaUbiaciones.length; i++) {
-            //si es la posicion cero la imprime, pero si es diferente le añade el salto de linea.
-            if (i == 0) {
-                txtPosiciones.setText(listaUbiaciones[i]);
-            } else {
-                txtPosiciones.setText(txtPosiciones.getText() + "\n" + listaUbiaciones[i]);
-            }
-        }
-
-        //archivoNotas archivoNotas = new archivoNotas();
+    public List<String> sacarUbicaciones(List<String> listaUbiaciones) {
+        txtPosiciones.setText("");
+        listaUbiaciones.stream().forEach(s -> txtPosiciones.setText(txtPosiciones.getText() + s + "\n"));        
+        
         if (dron < 10 && dron != 0) {
-            archivoNotas.editarFichero("Salidas/out0" + dron + ".txt", listaUbiaciones);
+            archivoNotas.editarFichero("Salidas/out0" + dron + ".txt", listaUbiaciones.stream().toString());
         } else {
-            archivoNotas.editarFichero("Salidas/out" + dron + ".txt", listaUbiaciones);
+            archivoNotas.editarFichero("Salidas/out" + dron + ".txt", listaUbiaciones.stream().toString());
         }
         return listaUbiaciones;
     }
@@ -552,15 +536,3 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
     // End of variables declaration//GEN-END:variables
 
 }
-
-//Instanciamos el panel del fondo de pantala
-//fondoPantallaPanel pnlFondo = new fondoPantallaPanel();
-//Al pnl fondo le vamos a añadir la clase de fondo de pantalla.
-//jPanelDibujo.add(pnlFondo);
-//A la clase config inicialidada publica le añadimos los datos del metodo ubicado en la clase archivo..
-//        config = archivo.cargarDatos();        
-//Llenamos las lineas que hay en el archivo de cada dron
-//leerLineas(dron);
-//        for (int i = 0; i < filasCargadas.length; i++) {
-//iniciarRecorrido();
-//        }
