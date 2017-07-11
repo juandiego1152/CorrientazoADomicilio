@@ -92,23 +92,7 @@ public class archivoNotas implements configuracionDronesPlatos {
         }
         return cantPlatos;
     }
-
-    public String leerArchivoUnicaLinea(String archivo) {
-        try {
-            String cadena;
-            FileReader f;
-            f = new FileReader(archivo);
-            BufferedReader b = new BufferedReader(f);
-            while ((cadena = b.readLine()) != null) {
-                return cadena;
-            }
-            b.close();
-        } catch (IOException ex) {
-            LOGGER.error("Error : " + ex.getMessage());
-        }
-        return " ";
-    }
-
+   
     public static void editarFichero(String ruta, String dato) {
         try {
             File Ffichero = new File(ruta);
@@ -161,34 +145,22 @@ public class archivoNotas implements configuracionDronesPlatos {
         }
     }
 
-//    public String leerArchivo(String archivo) {
-//          LOGGER.info("RUTA ARCHIVO: "+ archivo);
-//        try {
-//            String cadena = "";
-//            String cadena2;
-//            FileReader f;          
-//            f = new FileReader(archivo);
-//            BufferedReader b = new BufferedReader(f);
-//            cadena2 = b.readLine();
-//            //cadena2 = b.lines().flatMap(String::toUpperCase).;
-//            while (cadena2 != null) {
-//                if (cadena.equals("")) {
-//                    cadena = cadena2 + ";";
-//                } else {
-//                    cadena = cadena + "\n" + cadena2 + ";";
-//                }
-//                cadena2 = b.readLine();
-//            }
-//
-//            b.close();
-//
-//            return cadena;
-//        } catch (IOException ex) {
-//            JOptionPane.showMessageDialog(null, "No se encontro el archivo txt de este dron");            
-//            LOGGER.error("Error : " + ex.getMessage());
-//        }
-//        return " ";
-//    }
+     public String leerArchivoUnicaLinea(String archivo) {
+        try {
+            String cadena;
+            FileReader f;
+            f = new FileReader(archivo);
+            BufferedReader b = new BufferedReader(f);
+            while ((cadena = b.readLine()) != null) {
+                return cadena;
+            }
+            b.close();
+        } catch (IOException ex) {
+            LOGGER.error("Error : " + ex.getMessage());
+        }
+        return " ";
+    }
+     
     public String leerArchivo(String archivo) {
         LOGGER.info("RUTA ARCHIVO: " + archivo);
         List<String> lista = new ArrayList<>();
@@ -222,13 +194,3 @@ public class archivoNotas implements configuracionDronesPlatos {
         return cadenaFinal.substring(0, cadenaFinal.length() -1);
     }
 }
-
-//	
-//try (BufferedReader reader = Files.newBufferedReader(Paths.get("SomeLines.txt"), StandardCharsets.UTF_8)) {
-//	reader.lines()
-//		  .flatMap(line -> Stream.of(line.split(WORD_REGEXP)))
-//		  .distinct()
-//		  .map(String::toLowerCase)
-//		  .forEach(System.out::println);
-//}
-//}
