@@ -318,7 +318,7 @@ public class frmMovimientosDron extends javax.swing.JPanel implements moverDron,
         //Iniciamos los contador posX y posY los cuales nos van a llevar el calculo de las posiciones del dron
         int posX = 0, posY = 0;
         //Iniciamos los contadores para las posiciones del label.
-        int locationLabelX = 500, locationLabelY = 500;
+        int locationLabelX = 280, locationLabelY = 280;
         //Iniciamos el sentido del dron que sera norta
         String sentido = "N";
         //N = norte, S = Sur, O= Oeste, E=Este;    
